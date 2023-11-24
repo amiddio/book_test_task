@@ -1,11 +1,13 @@
-FROM python:3.10-alpine3.16
+FROM python:3.10
 
-COPY src /app
-COPY requirements.txt /app
-WORKDIR /app
 EXPOSE 8000
 
-RUN pip install -r requirements.txt
+COPY src /app
+WORKDIR /app
+
+RUN pip install --upgrade pip
+COPY requirements.txt /app
+RUN pip install -r requirements.txt --no-cache-dir
 
 RUN adduser --disabled-password app-user
 
