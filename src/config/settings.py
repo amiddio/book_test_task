@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     # Third-Party Apps
     'rest_framework',
+    'isbn_field',
 
     # Local Apps
     'book.apps.BookConfig',
