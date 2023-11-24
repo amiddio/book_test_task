@@ -8,7 +8,7 @@ class Book(models.Model):
     name = models.CharField(max_length=255)
     author = models.CharField(max_length=50)
     publication_date = models.DateField()
-    isbn = ISBNField()
+    isbn = ISBNField(clean_isbn=False, unique=True)
 
     class Meta:
         ordering = ['name']
