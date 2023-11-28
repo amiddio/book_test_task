@@ -46,5 +46,23 @@ services:
     image: redis:7.0.5-alpine
     hostname: redis
 
+  worker:
+    build:
+      context: .
+    hostname: worker
+    entrypoint: celery
+    command: -A config worker -l info
+    environment:
+      - DB_HOST=db
+      - DB_NAME=book_db
+      - DB_USER=book_user
+      - DB_PASS=password
+    volumes:
+      - ./src:/app
+    links:
+      - redis
+    depends_on:
+      - redis
+
 volumes:
   mysql_book_db:
